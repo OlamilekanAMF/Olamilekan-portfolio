@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import './App.css'
 
 // Sections for Home page
@@ -244,6 +245,7 @@ function App() {
         <Route path="/privacy" element={<PrivacyPolicyWrapper />} />
         <Route path="/terms" element={<TermsWrapper />} />
       </Routes>
+      <SpeedInsights />
     </Router>
   )
 }
