@@ -1,0 +1,2 @@
+- [x] Add dotenv configuration to server/index.js
+- [x] Create server/.env file with RESEND_API_KEY
