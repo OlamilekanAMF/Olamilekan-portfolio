@@ -199,15 +199,15 @@ export default function Hero() {
           </div>
 
           {/* Hero image — shown on large screens, preloaded for LCP */}
-          <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 z-10">
+          <div className="hidden lg:block absolute bottom-8 right-8 z-10">
             <img
-              src="/nero-removebg.png"
+              src="/nero-removebg.WebP"
               alt="Olamilekan — Full-Stack Developer & AI Specialist"
-              width={500}
-              height={600}
+              width={300}
+              height={400}
               loading="eager"
               fetchPriority="high"
-              className="w-[120px] md:w-[480px] lg:w-[500px] object-contain bg-transparent"
+              className="w-[100px] md:w-[370px] lg:w-[430px] object-contain bg-transparent"
               style={{ background: 'transparent' }}
             />
           </div>
