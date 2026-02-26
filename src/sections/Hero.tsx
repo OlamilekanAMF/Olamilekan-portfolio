@@ -199,7 +199,7 @@ export default function Hero() {
           </div>
 
           {/* Hero image — shown on large screens, preloaded for LCP */}
-          <div className="hidden lg:block absolute bottom-8 right-8 z-10">
+          <div className="hidden lg:block absolute bottom-3 right-8 z-10">
             <img
               src="/nero-removebg.WebP"
               alt="Olamilekan — Full-Stack Developer & AI Specialist"
