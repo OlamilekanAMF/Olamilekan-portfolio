@@ -57,8 +57,8 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-black border-t border-white/10 overflow-hidden">
-      {/* Background marquee text */}
-      <div className="absolute inset-0 flex items-center overflow-hidden opacity-[0.03] pointer-events-none">
+      {/* Background marquee text — purely decorative, hidden from AT */}
+      <div className="absolute inset-0 flex items-center overflow-hidden opacity-[0.03] pointer-events-none" aria-hidden="true">
         <div className="animate-marquee whitespace-nowrap">
           {[...Array(10)].map((_, i) => (
             <span key={i} className="text-[20vw] font-bold text-white mx-8">
@@ -160,7 +160,7 @@ export default function Footer() {
                     </button>
                   </div>
                   <div className="formkit-powered-by-convertkit-container">
-                    <a href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic" data-element="powered-by" className="formkit-powered-by-convertkit" data-variant="dark" target="_blank" rel="nofollow">Built with Kit</a>
+                    <a href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic" data-element="powered-by" className="formkit-powered-by-convertkit" data-variant="dark" target="_blank" rel="nofollow noopener">Built with Kit</a>
                   </div>
                 </div>
               </form>
@@ -169,7 +169,8 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-white/40">
+            {/* white/60 = 5.74:1 contrast ratio ✓ WCAG AA */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-white/60">
               <span>&copy; {new Date().getFullYear()} Olamilekan Portfolio. All rights reserved.</span>
               <span className="hidden md:inline">|</span>
               {footerLinks.legal.map((link, i) => (
