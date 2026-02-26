@@ -9,6 +9,19 @@ export default defineConfig({
   plugins: [inspectAttr(), react()],
   build: {
     outDir: '_site',
+    rollupOptions: {
+      output: {
+        // Split large vendor libraries into separate cacheable chunks
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (id.includes('gsap')) return 'vendor-gsap'
+          if (id.includes('/three/') || id.includes('@react-three')) return 'vendor-three'
+          if (id.includes('@radix-ui')) return 'vendor-radix'
+          if (id.includes('recharts') || id.includes('/d3-') || id.includes('/d3.')) return 'vendor-charts'
+          if (id.includes('lucide-react')) return 'vendor-icons'
+        },
+      },
+    },
   },
   resolve: {
     alias: {

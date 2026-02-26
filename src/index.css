@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Google Fonts are now loaded non-blocking via <link> in index.html */
 
 @tailwind base;
 @tailwind components;
@@ -209,6 +209,26 @@
 
 .line-animate:hover::after {
   width: 100%;
+}
+
+/* Skip navigation link — visible only on keyboard focus */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10001;
+  padding: 12px 24px;
+  background: #d0ff59;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  transform: translateY(-100%);
+  transition: transform 0.15s ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 /* Focus styles */

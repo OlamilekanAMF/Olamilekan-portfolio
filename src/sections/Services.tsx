@@ -1,19 +1,17 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { 
-  Globe, 
-  Smartphone, 
-  Bot, 
-  Brain, 
-  ArrowRight, 
+import {
+  Globe,
+  Smartphone,
+  Bot,
+  Brain,
+  ArrowRight,
   Check,
   MessageSquare,
   Code2,
   Rocket
 } from 'lucide-react'
-
-gsap.registerPlugin(ScrollTrigger)
+// ScrollTrigger is registered once in App.tsx — no per-module registration needed
 
 const services = [
   {
@@ -203,7 +201,8 @@ export default function Services() {
                 {/* Price & CTA */}
                 <div className="flex items-center justify-between pt-4 border-t border-white/10">
                   <div>
-                    <span className="text-white/40 text-sm">Starting from</span>
+                    {/* white/60 = 5.74:1 contrast ratio ✓ WCAG AA */}
+                    <span className="text-white/60 text-sm">Starting from</span>
                     <div className="text-lime font-semibold">{service.price}</div>
                   </div>
                   <button

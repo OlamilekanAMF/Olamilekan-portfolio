@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Menu, X } from 'lucide-react'
 import { gsap } from 'gsap'
 
@@ -15,18 +15,18 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeLink, setActiveLink] = useState('#home')
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100)
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
-    // Animate nav entrance
     gsap.fromTo(
       '.nav-container',
       { y: -100, opacity: 0 },
@@ -34,11 +34,61 @@ export default function Navigation() {
     )
   }, [])
 
+  // Focus trap: keep keyboard focus inside mobile menu while it is open,
+  // and return focus to the burger button when it closes.
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      menuButtonRef.current?.focus()
+      return
+    }
+
+    const el = mobileMenuRef.current
+    if (!el) return
+
+    const focusableSelectors =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    const getFocusable = () =>
+      Array.from(el.querySelectorAll<HTMLElement>(focusableSelectors))
+
+    // Move focus to first item when menu opens
+    const timer = setTimeout(() => getFocusable()[0]?.focus(), 50)
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false)
+        return
+      }
+      if (e.key !== 'Tab') return
+
+      const focusable = getFocusable()
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault()
+          last?.focus()
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault()
+          first?.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      clearTimeout(timer)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isMobileMenuOpen])
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     setActiveLink(href)
     setIsMobileMenuOpen(false)
-    
+
     const target = document.querySelector(href)
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' })
@@ -48,6 +98,7 @@ export default function Navigation() {
   return (
     <>
       <nav
+        aria-label="Main navigation"
         className={`nav-container fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
             ? 'py-3 bg-black/80 backdrop-blur-xl border-b border-white/5'
@@ -61,8 +112,12 @@ export default function Navigation() {
               href="#home"
               onClick={(e) => handleLinkClick(e, '#home')}
               className="flex items-center gap-2 group"
+              aria-label="Olamilekan Portfolio – go to home"
             >
-              <div className="w-10 h-10 rounded-lg bg-lime flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <div
+                className="w-10 h-10 rounded-lg bg-lime flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                aria-hidden="true"
+              >
                 <span className="text-black font-bold text-xl">OL</span>
               </div>
               <span className="text-white font-semibold text-lg hidden sm:block">
@@ -77,6 +132,7 @@ export default function Navigation() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
+                  aria-current={activeLink === link.href ? 'page' : undefined}
                   className={`relative text-sm font-medium transition-colors duration-300 ${
                     activeLink === link.href
                       ? 'text-lime'
@@ -85,7 +141,10 @@ export default function Navigation() {
                 >
                   {link.name}
                   {activeLink === link.href && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-lime rounded-full" />
+                    <span
+                      className="absolute -bottom-1 left-0 w-full h-0.5 bg-lime rounded-full"
+                      aria-hidden="true"
+                    />
                   )}
                 </a>
               ))}
@@ -104,11 +163,17 @@ export default function Navigation() {
 
             {/* Mobile Menu Button */}
             <button
+              ref={menuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 text-white"
-              aria-label="Toggle menu"
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen
+                ? <X size={24} aria-hidden="true" />
+                : <Menu size={24} aria-hidden="true" />
+              }
             </button>
           </div>
         </div>
@@ -117,17 +182,28 @@ export default function Navigation() {
       {/* Mobile Menu — conditionally rendered so hidden links are never in the DOM */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
+          {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/90 backdrop-blur-xl"
             onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
           />
-          <div className="absolute top-20 left-4 right-4 bg-dark-50 rounded-2xl p-6">
+          {/* Menu panel */}
+          <div
+            id="mobile-menu"
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+            className="absolute top-20 left-4 right-4 bg-dark-50 rounded-2xl p-6"
+          >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
+                  aria-current={activeLink === link.href ? 'page' : undefined}
                   className={`text-lg font-medium py-2 transition-colors ${
                     activeLink === link.href ? 'text-lime' : 'text-white/70'
                   }`}

@@ -107,8 +107,8 @@ export default function Hero() {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Background gradient effects — decorative, hidden from AT */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         {/* Main gradient orb */}
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-lime/10 rounded-full blur-[150px] animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-lime/5 rounded-full blur-[120px] animate-pulse delay-1000" />
@@ -124,11 +124,11 @@ export default function Hero() {
         />
       </div>
 
-      {/* Floating decorative elements */}
-      <div className="floating-element absolute top-32 left-20 w-20 h-20 border border-lime/20 rounded-lg rotate-12 hidden lg:block" />
-      <div className="floating-element absolute bottom-40 right-32 w-16 h-16 border border-lime/20 rounded-full hidden lg:block" />
-      <div className="floating-element absolute top-1/3 right-20 w-3 h-3 bg-lime rounded-full hidden lg:block" />
-      <div className="floating-element absolute bottom-1/3 left-32 w-2 h-2 bg-lime/50 rounded-full hidden lg:block" />
+      {/* Floating decorative elements — hidden from AT */}
+      <div aria-hidden="true" className="floating-element absolute top-32 left-20 w-20 h-20 border border-lime/20 rounded-lg rotate-12 hidden lg:block" />
+      <div aria-hidden="true" className="floating-element absolute bottom-40 right-32 w-16 h-16 border border-lime/20 rounded-full hidden lg:block" />
+      <div aria-hidden="true" className="floating-element absolute top-1/3 right-20 w-3 h-3 bg-lime rounded-full hidden lg:block" />
+      <div aria-hidden="true" className="floating-element absolute bottom-1/3 left-32 w-2 h-2 bg-lime/50 rounded-full hidden lg:block" />
 
       {/* Content */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-24">
@@ -192,19 +192,21 @@ export default function Hero() {
                 <div className="text-2xl sm:text-3xl font-bold text-lime mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-white/50">{stat.label}</div>
+                {/* white/60 = #999 on #000 → 5.74:1 contrast ratio ✓ WCAG AA */}
+                <div className="text-sm text-white/60">{stat.label}</div>
               </div>
             ))}
           </div>
 
-          {/* Hero image (public/herosection.png) - shown on large screens
-              NOTE: To remove the image background fully, replace `public/herosection.png`
-              with a transparent-background PNG (alpha channel). CSS cannot remove
-              embedded opaque backgrounds. */}
+          {/* Hero image — shown on large screens, preloaded for LCP */}
           <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 z-10">
             <img
               src="/nero-removebg.png"
               alt="Olamilekan — Full-Stack Developer & AI Specialist"
+              width={500}
+              height={600}
+              loading="eager"
+              fetchPriority="high"
               className="w-[120px] md:w-[480px] lg:w-[500px] object-contain bg-transparent"
               style={{ background: 'transparent' }}
             />
@@ -228,8 +230,8 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      {/* Scroll indicator — decorative, hidden from AT */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" aria-hidden="true">
         <span className="text-white/40 text-xs uppercase tracking-widest">Scroll</span>
         <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
           <div className="w-1 h-2 bg-lime rounded-full animate-bounce" />

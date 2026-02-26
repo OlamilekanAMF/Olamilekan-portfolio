@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// ScrollTrigger is registered once in App.tsx — no per-module registration needed
 import { ChevronDown, HelpCircle } from 'lucide-react'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const faqs = [
   {
@@ -125,9 +123,9 @@ export default function FAQ() {
                     id={panelId}
                     role="region"
                     aria-labelledby={triggerId}
-                    hidden={!isOpen}
+                    aria-hidden={!isOpen}
                     className={`overflow-hidden transition-all duration-300 ${
-                      isOpen ? 'max-h-96' : 'max-h-0'
+                      isOpen ? 'max-h-[500px]' : 'max-h-0'
                     }`}
                   >
                     <div className="px-6 pb-6 pl-20">

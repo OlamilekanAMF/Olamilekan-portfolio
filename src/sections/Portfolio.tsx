@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// ScrollTrigger is registered once in App.tsx — no per-module registration needed
 import { ExternalLink, Github, ChevronRight, ArrowRight } from 'lucide-react'
 import {
   Dialog,
@@ -8,8 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-
-gsap.registerPlugin(ScrollTrigger)
 
 type Category = 'All' | 'Web' | 'Mobile' | 'AI' | 'Automation'
 
@@ -173,8 +171,11 @@ export default function Portfolio() {
 
   return (
     <div ref={sectionRef} className="relative py-24 md:py-32 bg-black overflow-hidden">
-      {/* Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lime/5 rounded-full blur-[200px]" />
+      {/* Background — decorative, hidden from AT */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lime/5 rounded-full blur-[200px]"
+        aria-hidden="true"
+      />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
@@ -187,17 +188,18 @@ export default function Portfolio() {
               Selected Work
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
-              A collection of projects showcasing my expertise in web development, 
+              A collection of projects showcasing my expertise in web development,
               mobile apps, and AI-powered solutions.
             </p>
           </div>
 
-          {/* Filter tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {/* Filter tabs — aria-pressed indicates active filter */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12" role="group" aria-label="Filter projects by category">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
+                aria-pressed={activeCategory === category}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === category
                     ? 'bg-lime text-black'
@@ -212,10 +214,13 @@ export default function Portfolio() {
           {/* Projects grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {filteredProjects.map((project) => (
-              <div
+              // Changed from <div onClick> to <button> for full keyboard accessibility
+              <button
                 key={project.id}
-                className="portfolio-item group relative rounded-2xl overflow-hidden bg-dark-50 border border-white/10 cursor-pointer card-hover"
+                type="button"
                 onClick={() => setSelectedProject(project)}
+                aria-label={`View details for ${project.title}`}
+                className="portfolio-item group relative rounded-2xl overflow-hidden bg-dark-50 border border-white/10 cursor-pointer card-hover w-full text-left"
               >
                 {/* Image */}
                 <div className="aspect-[4/3] overflow-hidden">
@@ -223,10 +228,12 @@ export default function Portfolio() {
                     src={project.image}
                     alt={project.title}
                     loading="lazy"
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" aria-hidden="true" />
                 </div>
 
                 {/* Content */}
@@ -250,13 +257,10 @@ export default function Portfolio() {
                     {project.description}
                   </p>
 
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-2">
+                  {/* Tech stack — decorative context, hidden from AT */}
+                  <div className="flex flex-wrap gap-2" aria-hidden="true">
                     {project.tech.slice(0, 3).map((tech, i) => (
-                      <span
-                        key={i}
-                        className="text-xs text-white/40"
-                      >
+                      <span key={i} className="text-xs text-white/40">
                         {tech}{i < Math.min(project.tech.length, 3) - 1 && ','}
                       </span>
                     ))}
@@ -268,11 +272,14 @@ export default function Portfolio() {
                   </div>
 
                   {/* View project indicator */}
-                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-lime/0 group-hover:bg-lime flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                  <div
+                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-lime/0 group-hover:bg-lime flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    aria-hidden="true"
+                  >
                     <ChevronRight className="w-5 h-5 text-black" />
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 
@@ -283,7 +290,7 @@ export default function Portfolio() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-lime text-black font-semibold hover:bg-lime/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
             >
               View All Projects
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -300,6 +307,8 @@ export default function Portfolio() {
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   loading="lazy"
+                  width={896}
+                  height={504}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -332,7 +341,7 @@ export default function Portfolio() {
                   <ul className="grid sm:grid-cols-2 gap-2">
                     {selectedProject.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-2 text-white/60">
-                        <span className="w-1.5 h-1.5 bg-lime rounded-full" />
+                        <span className="w-1.5 h-1.5 bg-lime rounded-full" aria-hidden="true" />
                         {feature}
                       </li>
                     ))}
@@ -362,7 +371,7 @@ export default function Portfolio() {
                     rel="noopener noreferrer"
                     className="btn-primary flex items-center gap-2"
                   >
-                    <ExternalLink size={18} />
+                    <ExternalLink size={18} aria-hidden="true" />
                     Live Demo
                   </a>
                   <a
@@ -371,7 +380,7 @@ export default function Portfolio() {
                     rel="noopener noreferrer"
                     className="btn-outline flex items-center gap-2"
                   >
-                    <Github size={18} />
+                    <Github size={18} aria-hidden="true" />
                     View Code
                   </a>
                 </div>

@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+// ScrollTrigger is registered once in App.tsx — no per-module registration needed
 
 const skillCategories = [
   {

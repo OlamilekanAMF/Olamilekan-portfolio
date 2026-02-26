@@ -12,6 +12,7 @@
     <meta name="author" content="Olamilekan Portfolio" />
     <meta name="robots" content="index, follow" />
     
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://olamilekanamf-portfolio.netlify.app" />
@@ -32,6 +33,16 @@
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+    <!-- Google Fonts — non-blocking async load (avoids render-blocking @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" /></noscript>
+
+    <!-- Preload above-the-fold hero image to reduce LCP -->
+    <link rel="preload" as="image" href="/nero-removebg.png" />
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#000000" />

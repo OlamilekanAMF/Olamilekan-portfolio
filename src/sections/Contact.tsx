@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// ScrollTrigger is registered once in App.tsx — no per-module registration needed
 import { 
   Mail, 
   Phone, 
@@ -23,8 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-
-gsap.registerPlugin(ScrollTrigger)
 
 declare global {
   interface Window {
