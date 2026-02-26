@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { useSEO } from './hooks/useSEO'
 import './App.css'
 
 // Sections for Home page
@@ -26,6 +27,13 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Home page component
 function HomePage() {
+  useSEO({
+    title: 'Olamilekan Portfolio | Full-Stack Developer & AI Specialist',
+    description:
+      'Building scalable apps, smart websites & AI-powered automations. Expert in React, Next.js, Mobile Development, and AI Integration.',
+    path: '',
+  })
+
   const [isLoaded, setIsLoaded] = useState(false)
   const mainRef = useRef<HTMLDivElement>(null)
 
@@ -122,6 +130,13 @@ function HomePage() {
 
 // Portfolio page wrapper with minimal layout
 function PortfolioPageWrapper() {
+  useSEO({
+    title: 'Portfolio — Olamilekan | Web, Mobile & AI Projects',
+    description:
+      'Browse 50+ projects by Olamilekan — full-stack web apps, mobile applications, and AI automation systems.',
+    path: '/portfolio',
+  })
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Simple navigation for portfolio page */}
@@ -170,6 +185,13 @@ function PortfolioPageWrapper() {
 
 // Privacy Policy page wrapper
 function PrivacyPolicyWrapper() {
+  useSEO({
+    title: 'Privacy Policy — Olamilekan Portfolio',
+    description:
+      'Privacy policy for Olamilekan Portfolio. Learn how your personal information is collected, used, and protected.',
+    path: '/privacy',
+  })
+
   return (
     <div className="min-h-screen bg-black text-white">
       <nav className="fixed top-0 left-0 right-0 z-50 py-4 bg-black/80 backdrop-blur-xl border-b border-white/5">
@@ -198,6 +220,13 @@ function PrivacyPolicyWrapper() {
 
 // Terms page wrapper
 function TermsWrapper() {
+  useSEO({
+    title: 'Terms of Service — Olamilekan Portfolio',
+    description:
+      'Terms and conditions for use of Olamilekan Portfolio website and services.',
+    path: '/terms',
+  })
+
   return (
     <div className="min-h-screen bg-black text-white">
       <nav className="fixed top-0 left-0 right-0 z-50 py-4 bg-black/80 backdrop-blur-xl border-b border-white/5">

@@ -222,6 +222,7 @@ export default function Portfolio() {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   {/* Overlay */}
@@ -298,6 +299,7 @@ export default function Portfolio() {
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>

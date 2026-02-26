@@ -85,44 +85,60 @@ export default function FAQ() {
           </div>
 
           {/* FAQ List */}
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="faq-item rounded-2xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300 hover:border-white/20"
-              >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full flex items-center justify-between p-6 text-left"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-lime/10 flex items-center justify-center flex-shrink-0">
-                      <HelpCircle className="w-5 h-5 text-lime" />
-                    </div>
-                    <span className="text-white font-medium text-lg pr-4">
-                      {faq.question}
-                    </span>
-                  </div>
-                  <ChevronDown
-                    className={`w-5 h-5 text-white/50 flex-shrink-0 transition-transform duration-300 ${
-                      openIndex === index ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-
+          <div className="space-y-4" role="list">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index
+              const panelId = `faq-panel-${index}`
+              const triggerId = `faq-trigger-${index}`
+              return (
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openIndex === index ? 'max-h-96' : 'max-h-0'
-                  }`}
+                  key={index}
+                  className="faq-item rounded-2xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300 hover:border-white/20"
+                  role="listitem"
                 >
-                  <div className="px-6 pb-6 pl-20">
-                    <p className="text-white/60 leading-relaxed">
-                      {faq.answer}
-                    </p>
+                  <h3 className="m-0">
+                    <button
+                      id={triggerId}
+                      onClick={() => toggleFaq(index)}
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      className="w-full flex items-center justify-between p-6 text-left"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-lime/10 flex items-center justify-center flex-shrink-0">
+                          <HelpCircle className="w-5 h-5 text-lime" />
+                        </div>
+                        <span className="text-white font-medium text-lg pr-4">
+                          {faq.question}
+                        </span>
+                      </div>
+                      <ChevronDown
+                        aria-hidden="true"
+                        className={`w-5 h-5 text-white/50 flex-shrink-0 transition-transform duration-300 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                  </h3>
+
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={triggerId}
+                    hidden={!isOpen}
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isOpen ? 'max-h-96' : 'max-h-0'
+                    }`}
+                  >
+                    <div className="px-6 pb-6 pl-20">
+                      <p className="text-white/60 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* Still have questions */}

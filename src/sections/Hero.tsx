@@ -164,19 +164,21 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div ref={ctaRef} className="flex flex-wrap gap-4 mb-16">
-            <button
-              onClick={() => scrollToSection('#portfolio')}
+            <a
+              href="#portfolio"
+              onClick={(e) => { e.preventDefault(); scrollToSection('#portfolio') }}
               className="btn-primary flex items-center gap-2"
             >
               View My Work
               <ArrowDown size={18} />
-            </button>
-            <button
-              onClick={() => scrollToSection('#contact')}
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollToSection('#contact') }}
               className="btn-outline"
             >
               Hire Me
-            </button>
+            </a>
           </div>
 
           {/* Stats */}
@@ -202,7 +204,7 @@ export default function Hero() {
           <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 z-10">
             <img
               src="/nero-removebg.png"
-              alt="Hero graphic"
+              alt="Olamilekan — Full-Stack Developer & AI Specialist"
               className="w-[120px] md:w-[480px] lg:w-[500px] object-contain bg-transparent"
               style={{ background: 'transparent' }}
             />

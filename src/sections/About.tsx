@@ -117,7 +117,8 @@ export default function About() {
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
                 <img
                   src="/profile-photo.jpg"
-                  alt="Profile"
+                  alt="Olamilekan Amujosafe — Full-Stack Developer with 5+ years experience"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay gradient */}

@@ -114,46 +114,38 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
-          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
-      >
-        <div
-          className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-        <div
-          className={`absolute top-20 left-4 right-4 bg-dark-50 rounded-2xl p-6 transition-all duration-500 ${
-            isMobileMenuOpen
-              ? 'translate-y-0 opacity-100'
-              : '-translate-y-10 opacity-0'
-          }`}
-        >
-          <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
+      {/* Mobile Menu — conditionally rendered so hidden links are never in the DOM */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <div className="absolute top-20 left-4 right-4 bg-dark-50 rounded-2xl p-6">
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`text-lg font-medium py-2 transition-colors ${
+                    activeLink === link.href ? 'text-lime' : 'text-white/70'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              ))}
               <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className={`text-lg font-medium py-2 transition-colors ${
-                  activeLink === link.href ? 'text-lime' : 'text-white/70'
-                }`}
+                href="#contact"
+                onClick={(e) => handleLinkClick(e, '#contact')}
+                className="btn-primary text-center mt-4"
               >
-                {link.name}
+                Let&apos;s Talk
               </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, '#contact')}
-              className="btn-primary text-center mt-4"
-            >
-              Let&apos;s Talk
-            </a>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

@@ -14,33 +14,32 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://devportfolio.com" />
+    <meta property="og:url" content="https://olamilekanamf-portfolio.netlify.app" />
     <meta property="og:title" content="Olamilekan Portfolio | Full-Stack Developer & AI Specialist" />
     <meta property="og:description" content="Building scalable apps, smart websites & AI-powered automations. Expert in React, Next.js, Mobile Development, and AI Integration." />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content="/og-image.svg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://devportfolio.com" />
+    <meta property="twitter:url" content="https://olamilekanamf-portfolio.netlify.app" />
     <meta property="twitter:title" content="Olamilekan Portfolio | Full-Stack Developer & AI Specialist" />
     <meta property="twitter:description" content="Building scalable apps, smart websites & AI-powered automations. Expert in React, Next.js, Mobile Development, and AI Integration." />
-    <meta property="twitter:image" content="/og-image.jpg" />
+    <meta property="twitter:image" content="/og-image.svg" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23d0ff59'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='black' font-family='Arial'%3ED%3C/text%3E%3C/svg%3E" />
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23d0ff59'/%3E%3Ctext x='90' y='130' font-size='100' text-anchor='middle' fill='black' font-family='Arial'%3ED%3C/text%3E%3C/svg%3E" />
     
     <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
     <link rel="manifest" href="/manifest.json" />
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://devportfolio.com" />
+    <!-- Canonical URL (overridden per-route by useSEO hook) -->
+    <link rel="canonical" href="https://olamilekanamf-portfolio.netlify.app" />
 
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -63,21 +62,78 @@
   gtag('config', 'G-1VMPERGDX9');
   </script>
 
-    <!-- Structured Data -->
+    <!-- Structured Data: Person -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Olamilekan Portfolio",
-      "url": "https://devportfolio.com",
+      "name": "Olamilekan Amujosafe",
+      "url": "https://olamilekanamf-portfolio.netlify.app",
       "jobTitle": "Full-Stack Developer & AI Specialist",
+      "email": "amujosafeolamilekan@gmail.com",
       "description": "Building scalable apps, smart websites & AI-powered automations",
       "knowsAbout": ["Web Development", "Mobile App Development", "AI Automation", "Machine Learning", "React", "Next.js", "TypeScript", "Python"],
       "sameAs": [
-        "https://github.com",
-        "https://linkedin.com",
-        "https://twitter.com",
-        "https://dribbble.com"
+        "https://github.com/olamilekanAMF",
+        "https://twitter.com/OAmujosafe"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What services do you offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I offer comprehensive development services including custom web development, mobile app development (iOS & Android), AI automation and workflow systems, and AI integration with machine learning solutions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a typical project take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Project timelines vary based on complexity and scope. A simple website might take 2-4 weeks, while a complex web application or mobile app can take 2-4 months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is your pricing structure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I offer both fixed-price projects and hourly rates. Web development starts from $3,000, mobile apps from $5,000, and AI automation from $1,500. Custom quotes are provided for complex projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer ongoing support and maintenance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, I offer various support and maintenance packages including bug fixes, security updates, performance optimization, and feature enhancements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies do you specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I specialize in React, Next.js, TypeScript, and Node.js for web. React Native and Flutter for mobile. Python, TensorFlow, OpenAI API, and automation platforms like n8n and Zapier for AI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do we get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Simply reach out through the contact form or schedule a call. We will discuss your project requirements, goals, and timeline, then I will provide a detailed proposal including scope, timeline, and pricing."
+          }
+        }
       ]
     }
     </script>

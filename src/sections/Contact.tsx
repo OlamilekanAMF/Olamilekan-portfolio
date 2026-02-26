@@ -47,18 +47,21 @@ const contactInfo = [
     label: 'Email',
     value: 'amujosafeolamilekan@gmail.com',
     href: 'mailto:amujosafeolamilekan@gmail.com',
+    isLink: true,
   },
   {
     icon: Phone,
     label: 'Phone',
     value: '+234 7026758671',
     href: 'tel:+2347026758671',
+    isLink: true,
   },
   {
     icon: MapPin,
     label: 'Location',
     value: 'Remote / Worldwide',
-    href: '#',
+    href: null,
+    isLink: false,
   },
 ]
 
@@ -234,21 +237,35 @@ export default function Contact() {
             <div className="contact-content lg:col-span-2 space-y-8">
               {/* Info cards */}
               <div className="space-y-4">
-                {contactInfo.map((item, i) => (
-                  <a
-                    key={i}
-                    href={item.href}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-lime/30 transition-colors group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center group-hover:bg-lime/20 transition-colors">
-                      <item.icon className="w-5 h-5 text-lime" />
+                {contactInfo.map((item, i) => {
+                  const content = (
+                    <>
+                      <div className="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center group-hover:bg-lime/20 transition-colors">
+                        <item.icon className="w-5 h-5 text-lime" />
+                      </div>
+                      <div>
+                        <div className="text-white/50 text-sm">{item.label}</div>
+                        <div className="text-white font-medium">{item.value}</div>
+                      </div>
+                    </>
+                  )
+                  return item.isLink ? (
+                    <a
+                      key={i}
+                      href={item.href!}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-lime/30 transition-colors group"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div
+                      key={i}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 group"
+                    >
+                      {content}
                     </div>
-                    <div>
-                      <div className="text-white/50 text-sm">{item.label}</div>
-                      <div className="text-white font-medium">{item.value}</div>
-                    </div>
-                  </a>
-                ))}
+                  )
+                })}
               </div>
 
               {/* Calendly Schedule Section */}
@@ -308,10 +325,11 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-6">
                       {/* Name */}
                       <div>
-                        <label className="block text-white/60 text-sm mb-2">
+                        <label htmlFor="contact-name" className="block text-white/60 text-sm mb-2">
                           Your Name *
                         </label>
                         <Input
+                          id="contact-name"
                           type="text"
                           placeholder="John Doe"
                           value={formState.name}
@@ -323,10 +341,11 @@ export default function Contact() {
 
                       {/* Email */}
                       <div>
-                        <label className="block text-white/60 text-sm mb-2">
+                        <label htmlFor="contact-email" className="block text-white/60 text-sm mb-2">
                           Email Address *
                         </label>
                         <Input
+                          id="contact-email"
                           type="email"
                           placeholder="john@example.com"
                           value={formState.email}
@@ -340,7 +359,7 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-6">
                       {/* Project Type */}
                       <div>
-                        <label className="block text-white/60 text-sm mb-2">
+                        <label htmlFor="contact-project-type" className="block text-white/60 text-sm mb-2">
                           Project Type
                         </label>
                         <Select
@@ -362,7 +381,7 @@ export default function Contact() {
 
                       {/* Budget */}
                       <div>
-                        <label className="block text-white/60 text-sm mb-2">
+                        <label htmlFor="contact-budget" className="block text-white/60 text-sm mb-2">
                           Budget Range
                         </label>
                         <Select
@@ -385,10 +404,11 @@ export default function Contact() {
 
                     {/* Message */}
                     <div>
-                      <label className="block text-white/60 text-sm mb-2">
+                      <label htmlFor="contact-message" className="block text-white/60 text-sm mb-2">
                         Tell me about your project *
                       </label>
                       <Textarea
+                        id="contact-message"
                         placeholder="Describe your project, goals, and any specific requirements..."
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}

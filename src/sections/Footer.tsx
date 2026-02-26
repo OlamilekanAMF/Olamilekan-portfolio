@@ -6,7 +6,7 @@ const footerLinks = {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Portfolio', href: '/Portfolio' },
+    { name: 'Portfolio', href: '/portfolio' },
     { name: 'Services', href: '#services' },
     { name: 'Contact', href: '#contact' },
   ],
@@ -75,10 +75,10 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-1">
               <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="flex items-center gap-2 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-lime flex items-center justify-center">
-                  <span className="text-black font-bold text-xl">D</span>
+              <div className="w-10 h-10 rounded-lg bg-lime flex items-center justify-center">
+                  <span className="text-black font-bold text-xl">OL</span>
                 </div>
-                <span className="text-white font-semibold text-lg">DevPortfolio</span>
+                <span className="text-white font-semibold text-lg">Olamilekan Portfolio</span>
               </a>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
                 Building scalable apps, smart websites, and AI-powered automations. 
