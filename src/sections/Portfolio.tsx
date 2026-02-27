@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import OptimizedImage from '@/components/ui/optimized-image'
 
 type Category = 'All' | 'Web' | 'Mobile' | 'AI' | 'Automation'
 
@@ -199,7 +200,7 @@ export default function Portfolio() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                aria-pressed={activeCategory === category}
+
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === category
                     ? 'bg-lime text-black'
@@ -224,10 +225,9 @@ export default function Portfolio() {
               >
                 {/* Image */}
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={project.image}
                     alt={project.title}
-                    loading="lazy"
                     width={800}
                     height={600}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

@@ -43,6 +43,28 @@
 
     <!-- Preload above-the-fold hero image to reduce LCP -->
     <link rel="preload" as="image" href="/nero-removebg.png" />
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Critical styles for LCP and CLS prevention */
+      body { margin: 0; font-family: Inter, system-ui, -apple-system, sans-serif; background: #000; color: #fff; }
+      .min-h-screen { min-height: 100vh; }
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .relative { position: relative; }
+      .absolute { position: absolute; }
+      .z-10 { z-index: 10; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+      .font-bold { font-weight: 700; }
+      .text-white { color: #fff; }
+      .leading-tight { line-height: 1.25; }
+      .mb-6 { margin-bottom: 1.5rem; }
+      .text-lime { color: #d0ff59; }
+      .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    </style>
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#000000" />

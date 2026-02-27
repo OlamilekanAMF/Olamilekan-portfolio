@@ -9,6 +9,8 @@ export default defineConfig({
   plugins: [inspectAttr(), react()],
   build: {
     outDir: '_site',
+    // Enable compression
+    minify: 'terser',
     rollupOptions: {
       output: {
         // Split large vendor libraries into separate cacheable chunks
@@ -19,13 +21,36 @@ export default defineConfig({
           if (id.includes('@radix-ui')) return 'vendor-radix'
           if (id.includes('recharts') || id.includes('/d3-') || id.includes('/d3.')) return 'vendor-charts'
           if (id.includes('lucide-react')) return 'vendor-icons'
+          if (id.includes('react') || id.includes('react-dom')) return 'vendor-react'
+          if (id.includes('react-router')) return 'vendor-router'
         },
+        // Optimize chunk file names for caching
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
+    // Increase chunk size warning limit
+    chunkSizeWarningLimit: 1000,
+    // Generate source maps for production debugging
+    sourcemap: false,
+    // Enable CSS code splitting
+    cssCodeSplit: true,
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'gsap',
+      '@radix-ui/react-dialog',
+      'lucide-react',
+    ],
   },
 });
