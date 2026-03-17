@@ -1,3 +1,6 @@
+
+<img width="954" height="435" alt="portfolio" src="https://github.com/user-attachments/assets/6dfd2cb9-fee4-4fca-affa-160946d2eecf" />
+
 # Olamilekan Portfolio
 
 A modern, responsive portfolio website built with React, TypeScript, and Vite.
