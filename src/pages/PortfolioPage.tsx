@@ -21,7 +21,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger)
 
-type Category = 'All' | 'Web' | 'Mobile' | 'AI' | 'Automation'
+type Category = 'All' | 'Web' | 'Mobile' | 'AI' | 'Automation' | 'Marketing'
 
 interface Project {
   id: number
@@ -267,7 +267,7 @@ const projects: Project[] = [
   },
 ]
 
-const categories: Category[] = ['All', 'Web', 'Mobile', 'AI', 'Automation']
+const categories: Category[] = ['All', 'Web', 'Mobile', 'AI', 'Automation', 'Marketing']
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState<Category>('All')
@@ -360,7 +360,7 @@ export default function PortfolioPage() {
               </h1>
               <p className="text-lg text-white/60 max-w-2xl">
                 A curated collection of projects showcasing my expertise in web development, 
-                mobile applications, and AI-powered solutions. Each project represents a 
+                mobile applications, AI-powered solutions and Social Media Promotion/ SEO. Each project represents a 
                 unique challenge and innovative solution.
               </p>
             </div>

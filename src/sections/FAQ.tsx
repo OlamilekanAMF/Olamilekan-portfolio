@@ -6,7 +6,7 @@ import { ChevronDown, HelpCircle } from 'lucide-react'
 const faqs = [
   {
     question: 'What services do you offer?',
-    answer: 'I offer comprehensive development services including custom web development, mobile app development (iOS & Android), AI automation and workflow systems, and AI integration with machine learning solutions. Each service is tailored to meet your specific business needs and goals.',
+    answer: 'I offer comprehensive development services including custom web development, mobile app development (iOS & Android), AI automation and workflow systems, AI integration with machine learning solutions, Social Media Promotion (Twitch/YouTube), and SEO services. Each service is tailored to meet your specific business needs and goals.',
   },
   {
     question: 'How long does a typical project take?',

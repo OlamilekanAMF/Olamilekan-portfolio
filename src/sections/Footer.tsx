@@ -15,6 +15,8 @@ const footerLinks = {
     { name: 'Mobile Apps', href: '#services' },
     { name: 'AI Automation', href: '#services' },
     { name: 'AI Integration', href: '#services' },
+    { name: 'Social Media Promotion', href: '#services' },
+    { name: 'SEO Services', href: '#services' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },

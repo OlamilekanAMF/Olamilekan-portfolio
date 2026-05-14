@@ -42,12 +42,22 @@ const skillCategories = [
       { name: 'Kubernetes', level: 75 },
     ],
   },
+  {
+    name: 'Marketing & SEO',
+    skills: [
+      { name: 'Social Media Promotion', level: 90 },
+      { name: 'Twitch & YouTube Growth', level: 88 },
+      { name: 'SEO Strategy', level: 92 },
+      { name: 'Content Marketing', level: 85 },
+    ],
+  },
 ]
 
 const techStack = [
   'React', 'Next.js', 'TypeScript', 'Node.js', 'Python',
   'TensorFlow', 'PostgreSQL', 'MongoDB', 'AWS', 'Docker',
   'Git', 'Figma', 'Tailwind', 'GraphQL', 'Redis',
+  'Social Media Marketing', 'SEO Strategy',
 ]
 
 export default function Skills() {

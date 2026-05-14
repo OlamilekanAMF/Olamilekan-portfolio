@@ -139,19 +139,19 @@ export default function About() {
             {/* Content */}
             <div ref={contentRef}>
               <h3 className="text-2xl font-semibold text-white mb-6">
-                Full-Stack Developer & AI Specialist
+                Full-Stack Developer, AI Specialist & Digital Marketer
               </h3>
               
               <div className="space-y-4 text-white/70 leading-relaxed mb-8">
                 <p>
-                   My name is Olamilekan I&apos;m a results-driven developer with a passion for building scalable 
-                  applications and intelligent automation systems. With over 5 years of 
+                   My name is Olamilekan PKA. Lekjason I&apos;m a results-driven developer with a passion for building scalable 
+                  applications, intelligent automation systems, Social Media promotion on Twitch & YouTube. With over 5 years of 
                   experience in the industry, I&apos;ve helped businesses transform their 
                   digital presence and streamline operations through technology.
                 </p>
                 <p>
                   My expertise spans across modern web technologies, mobile development, 
-                  and AI-powered solutions. I believe in writing clean, maintainable code 
+                   AI-powered solutions and Social Medial Promotion. I believe in writing clean, maintainable code 
                   that not only works flawlessly today but scales effortlessly for tomorrow.
                 </p>
                 <p>

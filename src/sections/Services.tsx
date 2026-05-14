@@ -9,7 +9,9 @@ import {
   Check,
   MessageSquare,
   Code2,
-  Rocket
+  Rocket,
+  Megaphone,
+  Search
 } from 'lucide-react'
 // ScrollTrigger is registered once in App.tsx — no per-module registration needed
 
@@ -73,6 +75,36 @@ const services = [
     ],
     price: 'Custom Quote',
     process: ['Consultation', 'Data Analysis', 'Model Design', 'Integration', 'Training'],
+  },
+  {
+    id: 5,
+    icon: Megaphone,
+    title: 'Social Media Promotion',
+    description: 'Amplify your online presence with targeted social media promotion. Specializing in Twitch and YouTube growth to reach your target audience.',
+    features: [
+      'Twitch Channel Promotion',
+      'YouTube Channel Growth',
+      'Audience Engagement',
+      'Content Strategy',
+      'Performance Analytics',
+    ],
+    price: 'Custom Quote',
+    process: ['Strategy', 'Targeting', 'Implementation', 'Monitoring', 'Reporting'],
+  },
+  {
+    id: 6,
+    icon: Search,
+    title: 'SEO Services',
+    description: 'Improve your search engine rankings and increase organic traffic with comprehensive, data-driven SEO strategies.',
+    features: [
+      'Keyword Research',
+      'On-Page Optimization',
+      'Content Strategy',
+      'Technical SEO Audit',
+      'Performance Tracking',
+    ],
+    price: 'Custom Quote',
+    process: ['Audit', 'Strategy', 'Optimization', 'Content', 'Reporting'],
   },
 ]
 

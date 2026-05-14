@@ -9,6 +9,7 @@ import './App.css'
 // Above-fold sections — eagerly imported (needed for first paint)
 import Navigation from './sections/Navigation'
 import Hero from './sections/Hero'
+import TechStack from './sections/TechStack'
 
 // Below-fold sections — lazy loaded to reduce initial JS bundle size
 const About = lazy(() => import('./sections/About'))
@@ -94,6 +95,8 @@ function HomePage() {
         <section id="home">
           <Hero />
         </section>
+
+        <TechStack />
 
         <Suspense fallback={<SectionSkeleton />}>
           <section id="about" className="animate-section">
