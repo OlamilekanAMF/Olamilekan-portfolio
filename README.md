@@ -1,5 +1,10 @@
+# NEW
+<img width="951" height="437" alt="Screenshot 2026-05-14 132428" src="https://github.com/user-attachments/assets/1e3cb2c2-0be4-495a-b83c-f6b1a9ab5f1a" />
 
+## OLD
 <img width="954" height="435" alt="portfolio" src="https://github.com/user-attachments/assets/6dfd2cb9-fee4-4fca-affa-160946d2eecf" />
+
+#### Check the website here: https://olamilekanamf-portfolio.netlify.app
 
 # Olamilekan Portfolio
 
